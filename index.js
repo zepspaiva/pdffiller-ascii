@@ -80,6 +80,9 @@ module.exports = {
               console.log('exec error: ' + error);
               callback(error, null);
             } else {
+
+                console.log(this.form_fields);
+
                 var _keys = _.pluck(this.form_fields, 'title'),
         	    	_values = _.pluck(this.form_fields, 'fieldValue');
         	    	
@@ -96,7 +99,7 @@ module.exports = {
             tempFDF = "data" + (new Date().getTime()) + ".fdf";
 
         //Write the temp fdf file.
-        fs.writeFile( tempFDF, formData, function( err ) {
+        fs.writeFile( tempFDF, formData, { encoding: 'ascii' }, function( err ) {
 
             if ( err ) callback(err);
 
